@@ -19,10 +19,11 @@ connectDB(process.env.MONGO_URI);
 
 // Middleware
 // Allow requests from the frontend (CLIENT_URL), and allow credentials
-app.use(cors({
-  origin: process.env.CLIENT_URL || 'http://localhost:5173',
-  credentials: true
-}));
+// app.use(cors({
+//   origin: process.env.CLIENT_URL || 'http://localhost:5173',
+//   credentials: true
+// }));
+app.use(cors())
 
 // Parse JSON bodies
 app.use(express.json());
@@ -44,10 +45,7 @@ app.use('/api/auth', authRoutes);
 app.get('/', (req, res) => {
   res.send('Auth API running');
 });
-// FINALLY: YOU WANT TO SET A HOME ROUTE FOR WHEN WE HOST: SO MAKE SUREE YOU DO THIS BEFORE POST
-app.get("/",(req,res)=>{
-    res.status(200).json({success:true,message:"server is live"});
-})
+
 
 
 
